@@ -1,5 +1,5 @@
 [package]
-name = "markdown-components"
+name = "markdown-template"
 version = "0.1.0"
 authors = ["soeur <juzi201314@gmail.com>"]
 edition = "2018"
@@ -8,15 +8,18 @@ edition = "2018"
 crate-type = ["cdylib", "rlib"]
 
 [features]
-default = ["wee_alloc"]
-wee_alloc = []
+default = ["wee-alloc"]
+wee-alloc = ["wee_alloc"]
 
 [dependencies]
-wasm-bindgen = "0.2.63"
+wasm-bindgen = { version = "0.2.63", features = ["serde-serialize"] }
 console_error_panic_hook = "0.1.6"
-
-
+tera = "1.5.0"
 wee_alloc = { version = "0.4.5", optional = true }
+serde_json = "1.0.57"
 
 [profile.release]
 opt-level = "z"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = ["-Oz", "--enable-mutable-globals"]
