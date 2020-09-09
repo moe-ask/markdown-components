@@ -1,0 +1,22 @@
+[package]
+name = "markdown-components"
+version = "0.1.0"
+authors = ["soeur <juzi201314@gmail.com>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["wee_alloc"]
+wee_alloc = []
+
+[dependencies]
+wasm-bindgen = "0.2.63"
+console_error_panic_hook = "0.1.6"
+
+
+wee_alloc = { version = "0.4.5", optional = true }
+
+[profile.release]
+opt-level = "z"
